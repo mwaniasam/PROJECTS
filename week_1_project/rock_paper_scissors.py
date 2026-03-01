@@ -2,22 +2,23 @@
 
 from random import randint
 
-user_choice = int(input("Make a choice: 0-ROCK, 1-PAPER, 2-SCISSORS: "))
-print(user_choice)
-comps_choice = randint(0,2)
-print(comps_choice)
+user_choice = int(input("Make a choice: 0-Rock, 1-Paper, 2-Scissors: "))
+comps_choice = randint(0, 2)
+choices = ["Rock", "Paper", "Scissors"]
 
-if 3 <= user_choice < 0:
-    print("You entered an invalid number. YOU LOSE!")
+if user_choice < 0 or user_choice > 2:
+    print("Invalid choice. Please enter 0, 1, or 2.")
 else:
+    print(f"You chose {choices[user_choice]}, computer chose {choices[comps_choice]}")
+
     if user_choice == comps_choice:
-        print("It's a tie. Rock again!")
+        print("It's a tie!")
     elif user_choice == 0 and comps_choice == 2:
-        print("Yaaaaay! You've WON!")
+        print("Rock crushes Scissors — you WIN!")
     elif user_choice == 2 and comps_choice == 0:
-        print("Ooopse! YOU LOST!")
+        print("Scissors lost to Rock — you LOSE!")
     elif user_choice > comps_choice:
-        print("Yaaaaay! You've WON!")
+        print("You WIN!")
     elif user_choice < comps_choice:
-        print("Ooopse! YOU LOST!")
+        print("You LOSE!")
 
