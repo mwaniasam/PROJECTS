@@ -6,26 +6,42 @@
 
 """
 
-kra_pin = input("Please enter a valid kra pin: ")
-kra_pin = kra_pin.upper()
+kra_pin = input("Please enter a valid kra pin: ").upper()
 
 errors = []
 
-if len(kra_pin) != 11:
-    errors.append("KRA pin MUST have 11 characters!")
 
-if kra_pin[0] not in ("A", "P"):
-    errors.append("The first character of your pin must be either 'A' or 'P'!")
+def length(kra_pin):
+    if len(kra_pin) != 11:
+        errors.append("KRA pin MUST have 11 characters!")
 
-if not kra_pin[1:10].isdigit():
-    errors.append("Characters 1 to 10 must be numbers.")
 
-if not kra_pin[-1].isalpha():
-    errors.append("The last character must be a letter.")
+def first_char(kra_pin):
+    if not kra_pin or kra_pin[0] not in ("A", "P"):
+        errors.append("The first character of your pin must be either 'A' or 'P'!")
 
-if errors:
-    print("Invalid pin. Errors found:")
-    for error in errors:
-        print(f"  - {error}")
-else:
-    print("Valid KRA pin!")
+
+def digits(kra_pin):
+    if len(kra_pin) < 10 or not kra_pin[1:10].isdigit():
+        errors.append("Characters 2 to 10 must be numbers.")
+
+
+def last_char(kra_pin):
+    if not kra_pin or not kra_pin[-1].isalpha():
+        errors.append("The last character must be a letter.")
+
+
+def kra_pin_validator(kra_pin):
+    errors.clear()
+    length(kra_pin)
+    first_char(kra_pin)
+    digits(kra_pin)
+    last_char(kra_pin)
+
+    if errors:
+        print("Invalid KRA PIN:")
+        for error in errors:
+            print(f"- {error}")
+    else:
+        print("Valid KRA PIN")
+
